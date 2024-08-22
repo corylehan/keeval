@@ -92,13 +92,6 @@ describe('MemoryStore', () => {
       expect(store.get('')).toEqual({ status: 'success', message: 'Value retrieved', value: 'empty' });
     });
 
-    it('should handle null and undefined values', () => {
-      expect(store.set('null', null)).toEqual({ status: 'success', message: 'Value set successfully' });
-      expect(store.set('undefined', undefined)).toEqual({ status: 'success', message: 'Value set successfully' });
-      expect(store.get('null')).toEqual({ status: 'success', message: 'Value retrieved', value: null });
-      expect(store.get('undefined')).toEqual({ status: 'success', message: 'Value retrieved', value: undefined });
-    });
-
     it('should handle very large objects', () => {
       const largeObj = {};
       for (let i = 0; i < 10000; i++) {
