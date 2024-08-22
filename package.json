@@ -1,0 +1,14 @@
+{
+  "name": "keeval",
+  "version": "0.1.0",
+  "description": "Basic Key/Value Store",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.7.0"
+  }
+}
