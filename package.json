@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jest": "^29.7.0"
+    "fastify": "^4.28.1",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }
