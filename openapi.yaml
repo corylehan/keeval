@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: KeeVal API
+  description: A simple key-value store API with persistence
+  version: 1.0.0
+
+paths:
+  /{key}:
+    get:
+      summary: Retrieve a value
+      parameters:
+        - in: path
+          name: key
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:    
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '404':
+          description: Key not found
+          content:
+            application/json:    
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    
+    post:
+      summary: Set a value
+      parameters:
+        - in: path
+          name: key
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: any
+      responses:
+        '201':
+          description: Value set successfully
+          content:
+            application/json:    
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+    
+    delete:
+      summary: Delete a key-value pair
+      parameters:
+        - in: path
+          name: key
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Key-value pair deleted successfully
+          content:
+            application/json:    
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '404':
+          description: Key not found
+          content:
+            application/json:    
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /consolidate:
+    post:
+      summary: Consolidate the data store
+      responses:
+        '200':
+          description: Consolidation complete
+          content:
+            application/json:    
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+
+components:
+  schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [success]
+        message:
+          type: string
+        value:
+          type: any
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [error]
+        message:
+          type: string
